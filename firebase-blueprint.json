@@ -1,0 +1,56 @@
+{
+  "entities": {
+    "debtor": {
+      "title": "Debtor",
+      "description": "A person who owes money.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name of the debtor" },
+        "phone": { "type": "string", "description": "WhatsApp phone number" },
+        "totalAmount": { "type": "number", "description": "Total debt amount" },
+        "remainingAmount": { "type": "number", "description": "Current remaining balance" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "totalAmount", "remainingAmount"]
+    },
+    "payment": {
+      "title": "Payment",
+      "description": "A payment record.",
+      "type": "object",
+      "properties": {
+        "debtorId": { "type": "string" },
+        "debtorName": { "type": "string" },
+        "amount": { "type": "number" },
+        "date": { "type": "string", "format": "date-time" },
+        "remainingBalance": { "type": "number" }
+      },
+      "required": ["debtorId", "amount", "date"]
+    },
+    "installment": {
+      "title": "Installment",
+      "description": "A planned installment payment.",
+      "type": "object",
+      "properties": {
+        "debtorId": { "type": "string" },
+        "amount": { "type": "number" },
+        "dueDate": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["pending", "paid"] }
+      },
+      "required": ["debtorId", "amount", "dueDate", "status"]
+    }
+  },
+  "firestore": {
+    "debtors": {
+      "schema": "debtor",
+      "description": "Collection of debtors"
+    },
+    "payments": {
+      "schema": "payment",
+      "description": "Collection of payment history"
+    },
+    "installments": {
+      "schema": "installment",
+      "description": "Collection of planned installments"
+    }
+  }
+}

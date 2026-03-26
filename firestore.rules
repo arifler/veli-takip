@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // For this prototype, we allow all authenticated users to manage the debt system.
+    // In a real app, we'd check for an 'admin' role.
+    match /debtors/{debtorId} {
+      allow read, write: if isAuthenticated();
+    }
+    
+    match /payments/{paymentId} {
+      allow read, write: if isAuthenticated();
+    }
+    
+    match /installments/{installmentId} {
+      allow read, write: if isAuthenticated();
+    }
+  }
+}

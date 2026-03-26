@@ -1,0 +1,5 @@
+{
+  "name": "Arifler Veli Takip",
+  "description": "Alacak takip ve taksitlendirme uygulaması. WhatsApp entegrasyonu ile dekont ve hatırlatma mesajları gönderimi sağlar.",
+  "requestFramePermissions": []
+}
